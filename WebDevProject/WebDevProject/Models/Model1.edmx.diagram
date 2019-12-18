@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5d49b54c93bf437ab7605efa54cf0dc5" Name="Diagram1">
+        <EntityTypeShape EntityType="BSEKDatabaseModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BSEKDatabaseModel.Admit_Card" Width="1.5" PointX="9.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BSEKDatabaseModel.Candidate" Width="1.5" PointX="7.5" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BSEKDatabaseModel.Examination" Width="1.5" PointX="9.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BSEKDatabaseModel.Guardian" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BSEKDatabaseModel.Person" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BSEKDatabaseModel.Principle" Width="1.5" PointX="3" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BSEKDatabaseModel.School" Width="1.5" PointX="5.25" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BSEKDatabaseModel.Status_2" Width="1.5" PointX="5.25" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BSEKDatabaseModel.Subject" Width="1.5" PointX="12" PointY="12.25" IsExpanded="true" />
+        <AssociationConnector Association="BSEKDatabaseModel.FK_dbo_Admit_Card_dbo_Candidate_Roll_Number" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEKDatabaseModel.FK_dbo_Admit_Card_dbo_Guardian_GuardianID" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEKDatabaseModel.FK_dbo_Admit_Card_dbo_School_School_Code" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEKDatabaseModel.FK_dbo_Candidate_dbo_Guardian_GuardianID" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEKDatabaseModel.FK_dbo_Candidate_dbo_Person_PersonID" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEKDatabaseModel.FK_dbo_Candidate_dbo_School_School_Code" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEKDatabaseModel.FK_dbo_Candidate_dbo_Status_2_StatusID" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEKDatabaseModel.FK_dbo_Guardian_dbo_Person_PersonID" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEKDatabaseModel.FK_dbo_Principle_dbo_Person_PersonID" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEKDatabaseModel.FK_dbo_School_dbo_Principle_PrincipleID" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEKDatabaseModel.Candidate_took_Examination" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEKDatabaseModel.Examination_has_Subject" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

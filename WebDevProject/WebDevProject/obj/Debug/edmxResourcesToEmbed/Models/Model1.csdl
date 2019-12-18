@@ -1,0 +1,308 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BSEKDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Admit_Card">
+    <Key>
+      <PropertyRef Name="School_Code" />
+      <PropertyRef Name="GuardianID" />
+      <PropertyRef Name="Roll_Number" />
+    </Key>
+    <Property Name="School_Code" Type="Int32" Nullable="false" />
+    <Property Name="GuardianID" Type="Int32" Nullable="false" />
+    <Property Name="Roll_Number" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Candidate" Relationship="Self.FK_dbo_Admit_Card_dbo_Candidate_Roll_Number" FromRole="Admit_Card" ToRole="Candidate" />
+    <NavigationProperty Name="Guardian" Relationship="Self.FK_dbo_Admit_Card_dbo_Guardian_GuardianID" FromRole="Admit_Card" ToRole="Guardian" />
+    <NavigationProperty Name="School" Relationship="Self.FK_dbo_Admit_Card_dbo_School_School_Code" FromRole="Admit_Card" ToRole="School" />
+  </EntityType>
+  <EntityType Name="Candidate">
+    <Key>
+      <PropertyRef Name="Roll_Number" />
+    </Key>
+    <Property Name="Roll_Number" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StatusID" Type="Int32" Nullable="false" />
+    <Property Name="PersonID" Type="Int32" Nullable="false" />
+    <Property Name="School_Code" Type="Int32" />
+    <Property Name="GuardianID" Type="Int32" Nullable="false" />
+    <Property Name="DOB" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Gender" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Religion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Picture" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Private_Candidate" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Admit_Card" Relationship="Self.FK_dbo_Admit_Card_dbo_Candidate_Roll_Number" FromRole="Candidate" ToRole="Admit_Card" />
+    <NavigationProperty Name="Guardian" Relationship="Self.FK_dbo_Candidate_dbo_Guardian_GuardianID" FromRole="Candidate" ToRole="Guardian" />
+    <NavigationProperty Name="Person" Relationship="Self.FK_dbo_Candidate_dbo_Person_PersonID" FromRole="Candidate" ToRole="Person" />
+    <NavigationProperty Name="School" Relationship="Self.FK_dbo_Candidate_dbo_School_School_Code" FromRole="Candidate" ToRole="School" />
+    <NavigationProperty Name="Status_2" Relationship="Self.FK_dbo_Candidate_dbo_Status_2_StatusID" FromRole="Candidate" ToRole="Status_2" />
+    <NavigationProperty Name="Examinations" Relationship="Self.Candidate_took_Examination" FromRole="Candidate" ToRole="Examination" />
+  </EntityType>
+  <EntityType Name="Examination">
+    <Key>
+      <PropertyRef Name="ExamID" />
+    </Key>
+    <Property Name="ExamID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fee" Type="Int32" Nullable="false" />
+    <Property Name="Exam_Group" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Candidates" Relationship="Self.Candidate_took_Examination" FromRole="Examination" ToRole="Candidate" />
+    <NavigationProperty Name="Subjects" Relationship="Self.Examination_has_Subject" FromRole="Examination" ToRole="Subject" />
+  </EntityType>
+  <EntityType Name="Guardian">
+    <Key>
+      <PropertyRef Name="GuardianID" />
+    </Key>
+    <Property Name="GuardianID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PersonID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Admit_Card" Relationship="Self.FK_dbo_Admit_Card_dbo_Guardian_GuardianID" FromRole="Guardian" ToRole="Admit_Card" />
+    <NavigationProperty Name="Candidates" Relationship="Self.FK_dbo_Candidate_dbo_Guardian_GuardianID" FromRole="Guardian" ToRole="Candidate" />
+    <NavigationProperty Name="Person" Relationship="Self.FK_dbo_Guardian_dbo_Person_PersonID" FromRole="Guardian" ToRole="Person" />
+  </EntityType>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="PersonID" />
+    </Key>
+    <Property Name="PersonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CNIC_B_Form" Type="Int64" Nullable="false" />
+    <Property Name="Mobile_Number" Type="Int64" />
+    <Property Name="Residence_Telephone_Number" Type="Int64" />
+    <NavigationProperty Name="Candidates" Relationship="Self.FK_dbo_Candidate_dbo_Person_PersonID" FromRole="Person" ToRole="Candidate" />
+    <NavigationProperty Name="Guardians" Relationship="Self.FK_dbo_Guardian_dbo_Person_PersonID" FromRole="Person" ToRole="Guardian" />
+    <NavigationProperty Name="Principles" Relationship="Self.FK_dbo_Principle_dbo_Person_PersonID" FromRole="Person" ToRole="Principle" />
+  </EntityType>
+  <EntityType Name="Principle">
+    <Key>
+      <PropertyRef Name="PrincipleID" />
+    </Key>
+    <Property Name="PrincipleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PersonID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Person" Relationship="Self.FK_dbo_Principle_dbo_Person_PersonID" FromRole="Principle" ToRole="Person" />
+    <NavigationProperty Name="Schools" Relationship="Self.FK_dbo_School_dbo_Principle_PrincipleID" FromRole="Principle" ToRole="School" />
+  </EntityType>
+  <EntityType Name="School">
+    <Key>
+      <PropertyRef Name="School_Code" />
+    </Key>
+    <Property Name="School_Code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PrincipleID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Contact_Number" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Admit_Card" Relationship="Self.FK_dbo_Admit_Card_dbo_School_School_Code" FromRole="School" ToRole="Admit_Card" />
+    <NavigationProperty Name="Candidates" Relationship="Self.FK_dbo_Candidate_dbo_School_School_Code" FromRole="School" ToRole="Candidate" />
+    <NavigationProperty Name="Principle" Relationship="Self.FK_dbo_School_dbo_Principle_PrincipleID" FromRole="School" ToRole="Principle" />
+  </EntityType>
+  <EntityType Name="Status_2">
+    <Key>
+      <PropertyRef Name="StatusID" />
+    </Key>
+    <Property Name="StatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Candidates" Relationship="Self.FK_dbo_Candidate_dbo_Status_2_StatusID" FromRole="Status_2" ToRole="Candidate" />
+  </EntityType>
+  <EntityType Name="Subject">
+    <Key>
+      <PropertyRef Name="Code" />
+    </Key>
+    <Property Name="Code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Examinations" Relationship="Self.Examination_has_Subject" FromRole="Subject" ToRole="Examination" />
+  </EntityType>
+  <Association Name="FK_dbo_Admit_Card_dbo_Candidate_Roll_Number">
+    <End Role="Candidate" Type="Self.Candidate" Multiplicity="1" />
+    <End Role="Admit_Card" Type="Self.Admit_Card" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Candidate">
+        <PropertyRef Name="Roll_Number" />
+      </Principal>
+      <Dependent Role="Admit_Card">
+        <PropertyRef Name="Roll_Number" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Admit_Card_dbo_Guardian_GuardianID">
+    <End Role="Guardian" Type="Self.Guardian" Multiplicity="1" />
+    <End Role="Admit_Card" Type="Self.Admit_Card" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guardian">
+        <PropertyRef Name="GuardianID" />
+      </Principal>
+      <Dependent Role="Admit_Card">
+        <PropertyRef Name="GuardianID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Admit_Card_dbo_School_School_Code">
+    <End Role="School" Type="Self.School" Multiplicity="1" />
+    <End Role="Admit_Card" Type="Self.Admit_Card" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="School">
+        <PropertyRef Name="School_Code" />
+      </Principal>
+      <Dependent Role="Admit_Card">
+        <PropertyRef Name="School_Code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Candidate_dbo_Guardian_GuardianID">
+    <End Role="Guardian" Type="Self.Guardian" Multiplicity="1" />
+    <End Role="Candidate" Type="Self.Candidate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guardian">
+        <PropertyRef Name="GuardianID" />
+      </Principal>
+      <Dependent Role="Candidate">
+        <PropertyRef Name="GuardianID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Candidate_dbo_Person_PersonID">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="Candidate" Type="Self.Candidate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="Candidate">
+        <PropertyRef Name="PersonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Candidate_dbo_School_School_Code">
+    <End Role="School" Type="Self.School" Multiplicity="0..1" />
+    <End Role="Candidate" Type="Self.Candidate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="School">
+        <PropertyRef Name="School_Code" />
+      </Principal>
+      <Dependent Role="Candidate">
+        <PropertyRef Name="School_Code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Candidate_dbo_Status_2_StatusID">
+    <End Role="Status_2" Type="Self.Status_2" Multiplicity="1" />
+    <End Role="Candidate" Type="Self.Candidate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status_2">
+        <PropertyRef Name="StatusID" />
+      </Principal>
+      <Dependent Role="Candidate">
+        <PropertyRef Name="StatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Guardian_dbo_Person_PersonID">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="Guardian" Type="Self.Guardian" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="Guardian">
+        <PropertyRef Name="PersonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Principle_dbo_Person_PersonID">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="Principle" Type="Self.Principle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="Principle">
+        <PropertyRef Name="PersonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_School_dbo_Principle_PrincipleID">
+    <End Role="Principle" Type="Self.Principle" Multiplicity="1" />
+    <End Role="School" Type="Self.School" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Principle">
+        <PropertyRef Name="PrincipleID" />
+      </Principal>
+      <Dependent Role="School">
+        <PropertyRef Name="PrincipleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Candidate_took_Examination">
+    <End Role="Candidate" Type="Self.Candidate" Multiplicity="*" />
+    <End Role="Examination" Type="Self.Examination" Multiplicity="*" />
+  </Association>
+  <Association Name="Examination_has_Subject">
+    <End Role="Examination" Type="Self.Examination" Multiplicity="*" />
+    <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="BSEKDatabaseEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+    <EntitySet Name="Admit_Cards" EntityType="Self.Admit_Card" />
+    <EntitySet Name="Candidates" EntityType="Self.Candidate" />
+    <EntitySet Name="Examinations" EntityType="Self.Examination" />
+    <EntitySet Name="Guardians" EntityType="Self.Guardian" />
+    <EntitySet Name="People" EntityType="Self.Person" />
+    <EntitySet Name="Principles" EntityType="Self.Principle" />
+    <EntitySet Name="Schools" EntityType="Self.School" />
+    <EntitySet Name="Status_2" EntityType="Self.Status_2" />
+    <EntitySet Name="Subjects" EntityType="Self.Subject" />
+    <AssociationSet Name="FK_dbo_Admit_Card_dbo_Candidate_Roll_Number" Association="Self.FK_dbo_Admit_Card_dbo_Candidate_Roll_Number">
+      <End Role="Candidate" EntitySet="Candidates" />
+      <End Role="Admit_Card" EntitySet="Admit_Cards" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Admit_Card_dbo_Guardian_GuardianID" Association="Self.FK_dbo_Admit_Card_dbo_Guardian_GuardianID">
+      <End Role="Guardian" EntitySet="Guardians" />
+      <End Role="Admit_Card" EntitySet="Admit_Cards" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Admit_Card_dbo_School_School_Code" Association="Self.FK_dbo_Admit_Card_dbo_School_School_Code">
+      <End Role="School" EntitySet="Schools" />
+      <End Role="Admit_Card" EntitySet="Admit_Cards" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Candidate_dbo_Guardian_GuardianID" Association="Self.FK_dbo_Candidate_dbo_Guardian_GuardianID">
+      <End Role="Guardian" EntitySet="Guardians" />
+      <End Role="Candidate" EntitySet="Candidates" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Candidate_dbo_Person_PersonID" Association="Self.FK_dbo_Candidate_dbo_Person_PersonID">
+      <End Role="Person" EntitySet="People" />
+      <End Role="Candidate" EntitySet="Candidates" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Candidate_dbo_School_School_Code" Association="Self.FK_dbo_Candidate_dbo_School_School_Code">
+      <End Role="School" EntitySet="Schools" />
+      <End Role="Candidate" EntitySet="Candidates" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Candidate_dbo_Status_2_StatusID" Association="Self.FK_dbo_Candidate_dbo_Status_2_StatusID">
+      <End Role="Status_2" EntitySet="Status_2" />
+      <End Role="Candidate" EntitySet="Candidates" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Guardian_dbo_Person_PersonID" Association="Self.FK_dbo_Guardian_dbo_Person_PersonID">
+      <End Role="Person" EntitySet="People" />
+      <End Role="Guardian" EntitySet="Guardians" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Principle_dbo_Person_PersonID" Association="Self.FK_dbo_Principle_dbo_Person_PersonID">
+      <End Role="Person" EntitySet="People" />
+      <End Role="Principle" EntitySet="Principles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_School_dbo_Principle_PrincipleID" Association="Self.FK_dbo_School_dbo_Principle_PrincipleID">
+      <End Role="Principle" EntitySet="Principles" />
+      <End Role="School" EntitySet="Schools" />
+    </AssociationSet>
+    <AssociationSet Name="Candidate_took_Examination" Association="Self.Candidate_took_Examination">
+      <End Role="Candidate" EntitySet="Candidates" />
+      <End Role="Examination" EntitySet="Examinations" />
+    </AssociationSet>
+    <AssociationSet Name="Examination_has_Subject" Association="Self.Examination_has_Subject">
+      <End Role="Examination" EntitySet="Examinations" />
+      <End Role="Subject" EntitySet="Subjects" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

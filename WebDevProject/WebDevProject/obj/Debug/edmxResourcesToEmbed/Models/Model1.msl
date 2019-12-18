@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BSEKDatabaseModelStoreContainer" CdmEntityContainer="BSEKDatabaseEntities">
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="BSEKDatabaseModel.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="__MigrationHistory">
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Admit_Cards">
+      <EntityTypeMapping TypeName="BSEKDatabaseModel.Admit_Card">
+        <MappingFragment StoreEntitySet="Admit Card">
+          <ScalarProperty Name="School_Code" ColumnName="School Code" />
+          <ScalarProperty Name="GuardianID" ColumnName="GuardianID" />
+          <ScalarProperty Name="Roll_Number" ColumnName="Roll Number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Candidates">
+      <EntityTypeMapping TypeName="BSEKDatabaseModel.Candidate">
+        <MappingFragment StoreEntitySet="Candidate">
+          <ScalarProperty Name="Roll_Number" ColumnName="Roll Number" />
+          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+          <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+          <ScalarProperty Name="School_Code" ColumnName="School Code" />
+          <ScalarProperty Name="GuardianID" ColumnName="GuardianID" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Religion" ColumnName="Religion" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Private_Candidate" ColumnName="Private Candidate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Examinations">
+      <EntityTypeMapping TypeName="BSEKDatabaseModel.Examination">
+        <MappingFragment StoreEntitySet="Examination">
+          <ScalarProperty Name="ExamID" ColumnName="ExamID" />
+          <ScalarProperty Name="Fee" ColumnName="Fee" />
+          <ScalarProperty Name="Exam_Group" ColumnName="Exam Group" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Guardians">
+      <EntityTypeMapping TypeName="BSEKDatabaseModel.Guardian">
+        <MappingFragment StoreEntitySet="Guardian">
+          <ScalarProperty Name="GuardianID" ColumnName="GuardianID" />
+          <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="People">
+      <EntityTypeMapping TypeName="BSEKDatabaseModel.Person">
+        <MappingFragment StoreEntitySet="Person">
+          <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CNIC_B_Form" ColumnName="CNIC/B-Form" />
+          <ScalarProperty Name="Mobile_Number" ColumnName="Mobile Number" />
+          <ScalarProperty Name="Residence_Telephone_Number" ColumnName="Residence Telephone Number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Principles">
+      <EntityTypeMapping TypeName="BSEKDatabaseModel.Principle">
+        <MappingFragment StoreEntitySet="Principle">
+          <ScalarProperty Name="PrincipleID" ColumnName="PrincipleID" />
+          <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Schools">
+      <EntityTypeMapping TypeName="BSEKDatabaseModel.School">
+        <MappingFragment StoreEntitySet="School">
+          <ScalarProperty Name="School_Code" ColumnName="School Code" />
+          <ScalarProperty Name="PrincipleID" ColumnName="PrincipleID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Contact_Number" ColumnName="Contact Number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Status_2">
+      <EntityTypeMapping TypeName="BSEKDatabaseModel.Status_2">
+        <MappingFragment StoreEntitySet="Status_2">
+          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subjects">
+      <EntityTypeMapping TypeName="BSEKDatabaseModel.Subject">
+        <MappingFragment StoreEntitySet="Subject">
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Candidate_took_Examination" TypeName="BSEKDatabaseModel.Candidate_took_Examination" StoreEntitySet="Candidate took Examination">
+      <EndProperty Name="Candidate">
+        <ScalarProperty Name="Roll_Number" ColumnName="Roll Number" />
+      </EndProperty>
+      <EndProperty Name="Examination">
+        <ScalarProperty Name="ExamID" ColumnName="ExamID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Examination_has_Subject" TypeName="BSEKDatabaseModel.Examination_has_Subject" StoreEntitySet="Examination has Subject">
+      <EndProperty Name="Examination">
+        <ScalarProperty Name="ExamID" ColumnName="ExamID" />
+      </EndProperty>
+      <EndProperty Name="Subject">
+        <ScalarProperty Name="Code" ColumnName="Code" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

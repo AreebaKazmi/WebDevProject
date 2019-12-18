@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Board of Secondary Education Karachi</h1>
+    <h3>Brief History</h3>
+    <p class="lead">
+        Until a few years before the partition, Secondary and Higher the University of Bombay controlled Secondary Education in the Province of Sindh. The University of Sindh was established in April 1947 at Karachi and later on Secondary Education was transferred to it.
+    </p>
+    <p><a href="http://www.bsek.edu.pk/" class="btn btn-primary btn-lg">Learn more about BSEK</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Register</h2>
+        <p>
+            Sign in as a Candidate now and Register for your examinations
+        </p>
+        <p>@Html.ActionLink("Register", "Create", "People", null, new { @class = "btn btn-default" })</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Log in</h2>
+        <p>Log in as an examiner and gain access to all BSEK Candidate registrations.</p>
+        <p>@Html.ActionLink("Log In", "Login", "Account", null, new { @class = "btn btn-default" })</p>
+    </div>
+</div>

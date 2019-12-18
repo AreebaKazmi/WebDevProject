@@ -1,0 +1,42 @@
+﻿@model WebDevProject.Views.Account.Admit_Card
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Admit_Card</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Candidate.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Candidate.Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Guardian.GuardianID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Guardian.GuardianID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.School.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.School.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

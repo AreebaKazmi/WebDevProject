@@ -1,0 +1,42 @@
+﻿@model IEnumerable<WebDevProject.Views.Account.Admit_Card>
+
+@{
+    ViewBag.Title = "Admin Page";
+}
+
+<h2>Admin Portal</h2>
+
+<p>Use this portal to modify, delete, or create Candidate or Examination entries. </p>
+
+<div class="col-md-4">
+    <p>View Person Details</p>
+    <p>@Html.ActionLink("People", "Index", "People", null, new { @class = "btn btn-default" })</p>
+</div>
+<div class="col-md-4">
+    <p>View Candidate Details</p>
+    <p>@Html.ActionLink("Candidates", "Index", "Candidates", null, new { @class = "btn btn-default" })</p>
+</div>
+<div class="col-md-4">
+    <p>View Examination Details</p>
+    <p>@Html.ActionLink("Examinations", "Index", "Examinations", null, new { @class = "btn btn-default" })</p>
+</div>
+<div class="col-md-4">
+    <p>View School Details</p>
+    <p>@Html.ActionLink("Schools", "Index", "School", null, new { @class = "btn btn-default" })</p>
+</div>
+<div class="col-md-4">
+    <p>View Subject Details</p>
+    <p>@Html.ActionLink("Subjects", "Index", "Subjects", null, new { @class = "btn btn-default" })</p>
+</div>
+<div>
+    <p>
+        @Html.ActionLink("Register a Candidate", "Create", "People")
+    </p>
+</div>
+<div>
+    <p>
+        @Html.ActionLink("Register an Admin", "Register", "Account")
+    </p>
+</div>
+
+
