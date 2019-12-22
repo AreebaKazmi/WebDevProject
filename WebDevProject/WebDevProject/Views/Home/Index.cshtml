@@ -2,26 +2,59 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>Board of Secondary Education Karachi</h1>
-    <h3>Brief History</h3>
-    <p class="lead">
+<div class="jumbotron" style="background-color: #db9e9e;">
+    <h1 style="color: #7a0000;  text-shadow: 3px 2px #7a0005;">Board of Secondary Education Karachi</h1>
+    <h3 style="color: #2b0000;"> Brief History</h3>
+    <p class="lead" style="color: #2b0000;">
         Until a few years before the partition, Secondary and Higher the University of Bombay controlled Secondary Education in the Province of Sindh. The University of Sindh was established in April 1947 at Karachi and later on Secondary Education was transferred to it.
     </p>
-    <p><a href="http://www.bsek.edu.pk/" class="btn btn-primary btn-lg">Learn more about BSEK</a></p>
+    <p> <a href="http://www.bsek.edu.pk/" class="btn btn-primary btn-lg">Learn more about BSEK</a></p>
+    <h2 style="color: #2b0000; text-decoration: underline;">Total number of Registered Users: <span id="alert"></span></h2>
 </div>
 
-<div class="row">
+
+<div class="row" style="background-color: #ffdbdb;">
     <div class="col-md-4">
-        <h2>Register</h2>
-        <p>
+        <h2 style="color: #7a0000; text-decoration: underline;">Register</h2>
+        <p style="color: #7a0000;">
             Sign in as a Candidate now and Register for your examinations
         </p>
         <p>@Html.ActionLink("Register", "Create", "People", null, new { @class = "btn btn-default" })</p>
     </div>
     <div class="col-md-4">
-        <h2>Log in</h2>
-        <p>Log in as an examiner and gain access to all BSEK Candidate registrations.</p>
+        <h2 style="color: #7a0000; text-decoration: underline;">Log in</h2>
+        <p style="color: #7a0000;">Log in as an examiner and gain access to all BSEK Candidate registrations.</p>
         <p>@Html.ActionLink("Log In", "Login", "Account", null, new { @class = "btn btn-default" })</p>
     </div>
 </div>
+
+@*AJAX*@
+
+<div class="item"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script>
+    function sleep(delay) {
+        var start = new Date().getTime();
+        while (new Date().getTime() < start + delay);
+    }
+    $(".item").each(function () {
+        $this = $(this);
+        $.ajaxSetup({ cache: false });
+        function timeLeft() {
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:55591/Home/Myapi",
+                dataType: "html",
+                success: function (result) {
+                    //$this.html(result);
+                    document.getElementById("alert").innerHTML = result;
+                    timeLeft();
+                    console.log(result);
+                    sleep(1000);
+                }
+            });
+        }
+        timeLeft();
+    });
+</script>

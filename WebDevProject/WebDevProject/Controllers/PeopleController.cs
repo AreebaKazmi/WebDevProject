@@ -58,6 +58,7 @@ namespace WebDevProject.Controllers
             return View(person);
         }
 
+        [Authorize]
         // GET: People/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -89,6 +90,7 @@ namespace WebDevProject.Controllers
             return View(person);
         }
 
+        [Authorize]
         // GET: People/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -103,6 +105,7 @@ namespace WebDevProject.Controllers
             }
             return View(person);
         }
+
 
         // POST: People/Delete/5
         [HttpPost, ActionName("Delete")]

@@ -28,7 +28,6 @@ namespace WebDevProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
             Admit_Card admit_Card = db.Admit_Cards.Find(id);
             if (admit_Card == null)
             {
